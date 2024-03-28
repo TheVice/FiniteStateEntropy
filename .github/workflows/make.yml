@@ -10,6 +10,8 @@ jobs:
     runs-on: macos-latest
     steps:
     - uses: actions/checkout@v4
+      with:
+        submodules: true
 
     - name: clangtest
       run: make clangtest
@@ -27,6 +29,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v4
+      with:
+        submodules: true
 
     - name: Setup environment
       run: |
@@ -70,6 +74,8 @@ jobs:
         shell: msys2 {0}
     steps:
     - uses: actions/checkout@v4
+      with:
+        submodules: true
     - uses: msys2/setup-msys2@cc11e9188b693c2b100158c3322424c4cc1dadea # tag=v2.22.0
       with:
         msystem: ${{ matrix.msystem }}
