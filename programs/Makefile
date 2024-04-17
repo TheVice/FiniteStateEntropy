@@ -56,10 +56,13 @@ endif
 default: fse
 
 .PHONY: all
-all: fse fullbench fuzzer fuzzerU16 fuzzerHuff0 probagen
+all: fse fullbench fuzzer fuzzerU16 fuzzerHuff0 probagen build_dotnet
 
 .PHONY: all32
 all32: fse32 fullbench32 fuzzer32 fuzzerU16_32 fuzzerHuff0_32
+
+build_dotnet:
+	dotnet build ../Visual/CSharp/Program/Program.csproj /p:Configuration=Release
 
 fse32: CFLAGS += -m32
 fsex32: CFLAGS += -mx32

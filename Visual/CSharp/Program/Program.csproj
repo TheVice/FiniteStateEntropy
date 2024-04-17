@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    <OutputType>Exe</OutputType>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Include="../../../programs/runner.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="../FSE/FSE.csproj" />
+  </ItemGroup>
+
+</Project>

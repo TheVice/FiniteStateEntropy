@@ -1,0 +1,19 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    <OutputType>Library</OutputType>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <!--Compile Include="../../../lib/bitstream.cs" /-->
+    <Compile Include="../../../lib/entropy_common.cs" />
+    <Compile Include="../../../lib/error_public.cs" />
+    <Compile Include="../../../lib/fse.cs" />
+    <!--Compile Include="../../../lib/fse_decompress.cs" /-->
+    <!--Compile Include="../../../lib/huf.cs" /-->
+    <Compile Include="../../../lib/mem.cs" />
+  </ItemGroup>
+
+</Project>
