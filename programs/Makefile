@@ -28,6 +28,7 @@
 RELEASE    = v0.3.4
 FSEDIR     = ../lib
 ANT4CDIR   = ../third_party/ant4c
+SUPPORTDIR = ../support
 
 ifeq ($(shell $(CC) -v 2>&1 | grep -c "gcc version "), 1)
 ALIGN_LOOP = # -falign-functions=16 # -falign-loops=32
@@ -36,7 +37,7 @@ ALIGN_LOOP =
 endif
 
 DESTDIR   ?=
-CPPFLAGS  += -I$(FSEDIR) -I$(ANT4CDIR)
+CPPFLAGS  += -I$(FSEDIR) -I$(ANT4CDIR) -I$(SUPPORTDIR)
 CFLAGS    ?= -O3 $(ALIGN_LOOP)
 CFLAGS    += -Wall -Wextra -Wcast-qual -Wcast-align -Wshadow \
              -Wstrict-aliasing=1 -Wswitch-enum -Wstrict-prototypes -Wundef
@@ -76,6 +77,7 @@ fse fse32 fsex32: bench.c commandline.c fileio.c xxhash.c zlibh.c \
                   $(ANT4CDIR)/range.c \
                   $(ANT4CDIR)/string_unit.c \
                   $(ANT4CDIR)/text_encoding.c \
+                  $(SUPPORTDIR)/misc.c \
                   $(FSEDIR)/fse_decompress.c $(FSEDIR)/fse_compress.c $(FSEDIR)/fseU16.c \
                   $(FSEDIR)/huf_compress.c $(FSEDIR)/huf_decompress.c
 	$(CC) $(FLAGS) $^ -o $@$(EXT)
@@ -94,6 +96,7 @@ fuzzer fuzzer32: fuzzer.c xxhash.c $(FSEDIR)/entropy_common.c $(FSEDIR)/hist.c \
                  $(ANT4CDIR)/range.c \
                  $(ANT4CDIR)/string_unit.c \
                  $(ANT4CDIR)/text_encoding.c \
+                 $(SUPPORTDIR)/misc.c \
                  $(FSEDIR)/fse_decompress.c $(FSEDIR)/fse_compress.c
 	$(CC) $(FLAGS) $^ -o $@$(EXT)
 
@@ -108,6 +111,7 @@ fuzzerU16 fuzzerU16_32: fuzzerU16.c xxhash.c $(FSEDIR)/entropy_common.c $(FSEDIR
                         $(ANT4CDIR)/range.c \
                         $(ANT4CDIR)/string_unit.c \
                         $(ANT4CDIR)/text_encoding.c \
+                        $(SUPPORTDIR)/misc.c \
                         $(FSEDIR)/fse_decompress.c $(FSEDIR)/fse_compress.c $(FSEDIR)/fseU16.c
 	$(CC) $(FLAGS) $^ -o $@$(EXT)
 
@@ -122,6 +126,7 @@ fuzzerHuff0 fuzzerHuff0_32: fuzzerHuff0.c xxhash.c $(FSEDIR)/entropy_common.c $(
                             $(ANT4CDIR)/range.c \
                             $(ANT4CDIR)/string_unit.c \
                             $(ANT4CDIR)/text_encoding.c \
+                            $(SUPPORTDIR)/misc.c \
                             $(FSEDIR)/huf_compress.c $(FSEDIR)/huf_decompress.c \
                             $(FSEDIR)/fse_decompress.c $(FSEDIR)/fse_compress.c
 	$(CC) $(FLAGS) $^ -o $@$(EXT)
@@ -137,6 +142,7 @@ fullbench fullbench32 fullbenchx32: fullbench.c xxhash.c $(FSEDIR)/entropy_commo
                                     $(ANT4CDIR)/range.c \
                                     $(ANT4CDIR)/string_unit.c \
                                     $(ANT4CDIR)/text_encoding.c \
+                                    $(SUPPORTDIR)/misc.c \
                                     $(FSEDIR)/fse_decompress.c $(FSEDIR)/fse_compress.c $(FSEDIR)/fseU16.c \
                                     $(FSEDIR)/huf_compress.c $(FSEDIR)/huf_decompress.c
 	$(CC) $(FLAGS) $^ -o $@$(EXT)

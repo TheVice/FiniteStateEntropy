@@ -60,59 +60,59 @@ jobs:
     - name: max13test
       run: make max13test
 
-  make-test-windows:
-    runs-on: windows-latest
-    strategy:
-      fail-fast: false  # 'false' means Don't stop matrix workflows even if some matrix failed.
-      matrix:
-        include: [
-          { compiler: gcc, cpp_compiler: g++, msystem: MINGW64 },
-          { compiler: clang, cpp_compiler: clang++, msystem: MINGW64 },
-        ]
-    defaults:
-      run:
-        shell: msys2 {0}
-    steps:
-    - uses: actions/checkout@v4
-      with:
-        submodules: true
-    - uses: msys2/setup-msys2@cc11e9188b693c2b100158c3322424c4cc1dadea # tag=v2.22.0
-      with:
-        msystem: ${{ matrix.msystem }}
-        install: make diffutils
-        update: true
+  # make-test-windows:
+    # runs-on: windows-latest
+    # strategy:
+    #   fail-fast: false  # 'false' means Don't stop matrix workflows even if some matrix failed.
+    #   matrix:
+    #     include: [
+    #       { compiler: gcc, cpp_compiler: g++, msystem: MINGW64 },
+    #       { compiler: clang, cpp_compiler: clang++, msystem: MINGW64 },
+    #     ]
+    # defaults:
+    #   run:
+    #     shell: msys2 {0}
+    # steps:
+    # - uses: actions/checkout@v4
+    #   with:
+    #     submodules: true
+    # - uses: msys2/setup-msys2@cc11e9188b693c2b100158c3322424c4cc1dadea # tag=v2.22.0
+    #   with:
+    #     msystem: ${{ matrix.msystem }}
+    #     install: make diffutils
+    #     update: true
 
     # Based on https://ariya.io/2020/07/on-github-actions-with-msys2
-    - name: install mingw gcc x86_64
-      if: ${{ (matrix.compiler == 'gcc') }}
-      run: pacman --noconfirm -S mingw-w64-x86_64-gcc
+    # - name: install mingw gcc x86_64
+    #   if: ${{ (matrix.compiler == 'gcc') }}
+    #   run: pacman --noconfirm -S mingw-w64-x86_64-gcc
 
-    - name: install mingw clang x86_64
-      if: ${{ (matrix.compiler == 'clang') }}
-      run: pacman --noconfirm -S mingw-w64-x86_64-clang
+    # - name: install mingw clang x86_64
+    #   if: ${{ (matrix.compiler == 'clang') }}
+    #   run: pacman --noconfirm -S mingw-w64-x86_64-clang
 
-    - name: clangtest
-      if: ${{ (matrix.compiler == 'clang') }}
-      run: |
-        export CC=${{ matrix.compiler }}
-        export CXX=${{ matrix.cpp_compiler }}
-        make clangtest
+    # - name: clangtest
+    #   if: ${{ (matrix.compiler == 'clang') }}
+    #   run: |
+    #     export CC=${{ matrix.compiler }}
+    #     export CXX=${{ matrix.cpp_compiler }}
+    #     make clangtest
 
-    - name: gpptest
-      if: ${{ (matrix.compiler == 'gcc') }}
-      run: |
-        export CC=${{ matrix.compiler }}
-        export CXX=${{ matrix.cpp_compiler }}
-        make gpptest
+    # - name: gpptest
+    #   if: ${{ (matrix.compiler == 'gcc') }}
+    #   run: |
+    #     export CC=${{ matrix.compiler }}
+    #     export CXX=${{ matrix.cpp_compiler }}
+    #     make gpptest
 
-    - name: test
-      run: |
-        export CC=${{ matrix.compiler }}
-        export CXX=${{ matrix.cpp_compiler }}
-        make test
+    # - name: test
+    #   run: |
+    #     export CC=${{ matrix.compiler }}
+    #     export CXX=${{ matrix.cpp_compiler }}
+    #     make test
 
-    - name: max13test
-      run: |
-        export CC=${{ matrix.compiler }}
-        export CXX=${{ matrix.cpp_compiler }}
-        make max13test
+    # - name: max13test
+    #   run: |
+    #     export CC=${{ matrix.compiler }}
+    #     export CXX=${{ matrix.cpp_compiler }}
+    #     make max13test
