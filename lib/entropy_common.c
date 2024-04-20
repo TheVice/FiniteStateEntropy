@@ -190,7 +190,7 @@ size_t FSE_readNCount(short* normalizedCounter, unsigned* maxSVPtr, unsigned* ta
         const uint8_t* start = NULL;
         uint32_t char_set;
         //
-        static const uint8_t* func = (const uint8_t*)__FUNCTION__;
+        const uint8_t* func = (const uint8_t*)__FUNCTION__;
         char_set = (uint32_t)string_index_of(pos, finish, func, func + common_count_bytes_until(func, 0));
         pos += char_set;
         pos += common_count_bytes_until(func, 0);
