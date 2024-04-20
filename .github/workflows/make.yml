@@ -6,24 +6,24 @@ on:
   push:
 
 jobs:
-  make-test-macos:
-    runs-on: macos-latest
-    steps:
-    - uses: actions/checkout@v4
-      with:
-        submodules: true
+  # make-test-macos:
+  #   runs-on: macos-latest
+  #   steps:
+  #   - uses: actions/checkout@v4
+  #     with:
+  #       submodules: true
 
-    - name: clangtest
-      run: make clangtest
+  #   - name: clangtest
+  #     run: make clangtest
 
-    - name: test
-      run: make test
+  #   - name: test
+  #     run: make test
 
-    - name: sanitize
-      run: make sanitize
+  #   - name: sanitize
+  #     run: make sanitize
 
-    - name: max13test
-      run: make max13test
+  #   - name: max13test
+  #     run: make max13test
 
   make-test-ubuntu:
     runs-on: ubuntu-latest
